@@ -1,11 +1,44 @@
-const candidates = [...Array(32).keys()].map(i => ({
-  name: `Candidate ${i + 1}`,
-  img: `${i + 1}.png`
-}));
+
+const candidates = [
+  { name: "Ismile", img: "1.png" },
+  { name: "Sageer", img: "2.png" },
+  { name: "Sanskar", img: "3.png" },
+  { name: "Gufran", img: "4.png" },
+  { name: "Satwik", img: "5.png" },
+  { name: "Zeeshan", img: "6.png" },
+  { name: "Arush", img: "7.png" },
+  { name: "Satyam", img: "8.png" },
+  { name: "Yuvraj", img: "9.png" },
+  { name: "Ansh", img: "10.png" },
+  { name: "Ayaj Joker", img: "11.png" },
+  { name: "Aditya", img: "12.png" },
+  { name: "Shivam", img: "13.png" },
+  { name: "Faizan", img: "14.png" },
+  { name: "Umang", img: "15.png" },
+  { name: "Anukalp", img: "16.png" },
+  { name: "Sahid", img: "17.png" },
+  { name: "Meraj", img: "18.png" },
+  { name: "Jaiswal", img: "19.png" },
+  { name: "Chandan", img: "20.png" },
+  { name: "Raghvendra", img: "21.png" },
+  { name: "Vikas", img: "22.png" },
+  { name: "Tauneer", img: "23.png" },
+  { name: "Kamran", img: "24.png" },
+  { name: "Ehtesham", img: "25.png" },
+  { name: "Aryan", img: "26.png" },
+  { name: "Aditya", img: "27.png" },
+  { name: "Aftab", img: "28.png" },
+  { name: "the silent guy", img: "29.png" },
+  { name: "Rizwan", img: "30.png" },
+  { name: "Rohit", img: "31.png" },
+  { name: "Aryman", img: "32.png" }
+];
 
 let round = [...candidates];
 let nextRound = [];
 let currentMatch = [null, null];
+let scores = {};
+candidates.forEach(c => scores[c.name] = 0);
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -37,8 +70,19 @@ function showNextMatch() {
 }
 
 function vote(side) {
-  nextRound.push(currentMatch[side === 'left' ? 0 : 1]);
+  const votedFor = currentMatch[side === 'left' ? 0 : 1];
+  nextRound.push(votedFor);
+  scores[votedFor.name]++;
   showNextMatch();
+  updateLeaderboard();
+}
+
+function updateLeaderboard() {
+  const sorted = Object.entries(scores)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 10);
+  const list = document.getElementById('leaderboard-list');
+  list.innerHTML = sorted.map(([name, score]) => `<li>${name} - ${score}</li>`).join('');
 }
 
 function restart() {
@@ -84,5 +128,8 @@ function launchConfetti() {
   setInterval(draw, 30);
 }
 
-shuffle(round);
-showNextMatch();
+window.onload = () => {
+  shuffle(round);
+  showNextMatch();
+  updateLeaderboard();
+};
