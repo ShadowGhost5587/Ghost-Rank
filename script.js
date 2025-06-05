@@ -1,7 +1,6 @@
-
 const candidates = [...Array(32).keys()].map(i => ({
   name: `Candidate ${i + 1}`,
-  img: `images/${i + 1}.png`
+  img: `${i + 1}.png`
 }));
 
 let round = [...candidates];
