@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
   <div class="container">
     <h1>👻 GhostRank: Class Battle Royale</h1>
     <p class="subtitle">Who will be crowned the ultimate class legend?</p>
+
     <div id="battle">
       <div class="candidate card" id="left" onclick="vote('left')">
         <img id="left-img" src="" alt="Left Candidate" />
@@ -27,10 +29,15 @@
       <h2>🏆 The Ultimate Classmate is:</h2>
       <img id="winner-img" src="" alt="Winner" />
       <h3 id="winner-name"></h3>
-      <p>Since there were only guys... You, my friend, are officially 💅 <strong>GAY</strong> 😘</p>
+      <p style="font-size: 1.2rem;">Since there were only guys... You, my friend, are officially 💅 <strong>GAY</strong> 😘</p>
       <button onclick="restart()">Replay Showdown 🔄</button>
     </div>
+
+    <footer class="custom-footer">
+      <p>Created by <strong>Md. Kamran AKA Ghost</strong> 👻</p>
+    </footer>
   </div>
+
   <canvas id="confetti"></canvas>
   <script src="script.js"></script>
 </body>
